@@ -7,13 +7,13 @@ public:
         {
             // for odd length
             int l=1;
-            int b=1;
+            bool b=1;
             for(int j=i-1,k=i+1;j>=0 || k<n;j--,k++)
             {
                 if(j>=0 && k<n && s[j]==s[k])
                 l+=2;
                 else if(b)
-                k--,l++,b--;                  // move left
+                k--,l++,b=0;                  // move left
                 else
                 break;
             }
@@ -24,7 +24,7 @@ public:
                 if(j>=0 && k<n && s[j]==s[k])
                 l+=2;
                 else if(b)
-                j++,l++,b--;                  // move right
+                j++,l++,b=0;                  // move right
                 else
                 break;
             }
@@ -36,7 +36,7 @@ public:
                 if(j>=0 && k<n && s[j]==s[k])
                 l+=2;
                 else if(b)
-                k--,l++,b--;                  // move left
+                k--,l++,b=0;                  // move left
                 else
                 break;
             }
@@ -47,7 +47,7 @@ public:
                 if(j>=0 && k<n && s[j]==s[k])
                 l+=2;
                 else if(b)
-                j++,l++,b--;                  // move right
+                j++,l++,b=0;                  // move right
                 else
                 break;
             }
