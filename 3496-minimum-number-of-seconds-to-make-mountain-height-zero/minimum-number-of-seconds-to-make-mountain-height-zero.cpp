@@ -2,7 +2,7 @@ class Solution {
 public:
     long long minNumberOfSeconds(int mountainHeight, vector<int>& workerTimes) {
        long long H=*max_element(workerTimes.begin(), workerTimes.end());
-       long long start=1,end=static_cast<long long>(H)*mountainHeight*(mountainHeight+1)/2;
+       long long start=1,end=(H)*mountainHeight*(mountainHeight+1)/2;
        long long ans=0;
        while(start<=end)
        {
