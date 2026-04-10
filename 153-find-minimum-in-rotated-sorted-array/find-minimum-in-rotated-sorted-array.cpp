@@ -11,7 +11,7 @@ public:
          }
          else
          {
-            ans=nums[mid];
+            ans=nums[mid];       // this may be answer 
             end=mid-1;
          }
        }
