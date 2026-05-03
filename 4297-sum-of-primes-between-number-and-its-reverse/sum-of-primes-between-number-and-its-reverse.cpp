@@ -5,12 +5,23 @@ public:
     reverse(s.begin(),s.end());
     int n1=stoi(s);
 
-    int limit=max(n,n1)+1;
-    vector<bool> isPrime(limit+1, true);
+    // int limit=max(n,n1)+1;
+    // vector<bool> isPrime(limit+1, true);
+    // isPrime[0] = isPrime[1] = false;
+    // for (int i = 2; i * i <= limit; i++) {
+    //     if (isPrime[i]) {
+    //         for (int j = i * 2; j <= limit; j += i) {
+    //             isPrime[j] = false;
+    //         }
+    //     }
+    // }
+
+    // int limit=max(n,n1)+1;
+    vector<bool> isPrime(1001, true);
     isPrime[0] = isPrime[1] = false;
-    for (int i = 2; i * i <= limit; i++) {
+    for (int i = 2; i * i <= 1000; i++) {
         if (isPrime[i]) {
-            for (int j = i * 2; j <= limit; j += i) {
+            for (int j = i * 2; j <= 1000; j += i) {
                 isPrime[j] = false;
             }
         }
