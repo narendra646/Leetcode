@@ -11,44 +11,52 @@
  */
 class Solution {
 public:
-    void Inorder(TreeNode *root,vector<int>&inorder)
-    {
-       if(!root)
-       return;
-       
-       Inorder(root->left,inorder);
-       inorder.push_back(root->val);
-       Inorder(root->right,inorder);
-
-    }
-
-    void replace(TreeNode *root,vector<int>&inorder,int &index)
-    {
-        if(!root)
-        return;
-
-        replace(root->left,inorder,index);
-        root->val=inorder[index++];
-        replace(root->right,inorder,index);
-    }
-
     void recoverTree(TreeNode* root) {
-       vector<int>inorder;
-       Inorder(root,inorder);
-       int first=-1,second=-1;
-       for(int i=0;i<inorder.size()-1;i++)
-       {
-          if(inorder[i]>inorder[i+1])
-          {
-            if(first==-1)
-            first=i;
+        /// inorder by morris traversal 
+        TreeNode *first=NULL,*second=NULL;
+        TreeNode *last=NULL,*present=NULL;
+        while(root)
+        {
+            if(!root->left)
+            {
+                last=present;
+                present=root;
+                if(last && last->val>present->val)
+                {
+                    if(!first)
+                    first=last;
 
-            second=i+1;
-          }
-       }
-      swap(inorder[first],inorder[second]);
-      int index=0;
-      replace(root,inorder,index);
+                    second=present;
+                }
+                root=root->right;
+            }
+            else
+            {
+                TreeNode *curr=root->left;
+                while(curr->right && curr->right!=root)
+                curr=curr->right;
 
+                if(curr->right==NULL)
+                {
+                    curr->right=root;
+                    root=root->left;
+                }
+                else
+                {
+                    curr->right=NULL;
+                    last=present;
+                    present=root;
+                    if(last && last->val>present->val)
+                    {
+                        if(!first)
+                        first=last;
+
+                        second=present;
+                    }
+                    root=root->right;
+                }
+            }
+        }
+        swap(first->val,second->val);
     }
 };
