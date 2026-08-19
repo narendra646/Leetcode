@@ -1,22 +1,32 @@
 class Solution {
 public:
-    int solve(int n)
+    int solve(int n, vector<int>&dp)
     {
         if(n<=1)
         return 1;
 
+        if(dp[n]!=-1)
+        return dp[n];
+
         int ans=0;
         for(int i=1;i<=n;i++)
         {
-            int left=solve(i-1);
-            int right=solve(n-i);
+            int left=solve(i-1,dp);
+            int right=solve(n-i,dp);
             ans+=left*right;
         }
 
-        return ans;
+        return dp[n]=ans;
     }
     int numTrees(int n) {
-     return solve(n);
+    //  return solve(n);
+     
+     if(n<=1)
+     return 1;
+
+      vector<int>dp(n+1,-1);
+      solve(n,dp);
+      return dp[n];
 
     }
 };
